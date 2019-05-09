@@ -14,6 +14,8 @@
 		11D48F7222831BA100759F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D48F7022831BA100759F06 /* LaunchScreen.storyboard */; };
 		11D48F7A22831BBF00759F06 /* UIBezierPath+FitCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D48F7922831BBF00759F06 /* UIBezierPath+FitCurves.swift */; };
 		11D48F8222833C0E00759F06 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D48F8122833C0E00759F06 /* PointView.swift */; };
+		11D48F882283C23F00759F06 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 11D48F862283C23F00759F06 /* LICENSE */; };
+		11D48F892283C23F00759F06 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11D48F872283C23F00759F06 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		11D48F7322831BA100759F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D48F7922831BBF00759F06 /* UIBezierPath+FitCurves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+FitCurves.swift"; sourceTree = "<group>"; };
 		11D48F8122833C0E00759F06 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
+		11D48F862283C23F00759F06 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		11D48F872283C23F00759F06 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,8 @@
 		11D48F5B22831BA000759F06 = {
 			isa = PBXGroup;
 			children = (
+				11D48F862283C23F00759F06 /* LICENSE */,
+				11D48F872283C23F00759F06 /* README.md */,
 				11D48F6622831BA000759F06 /* BezierFitCurves */,
 				11D48F6522831BA000759F06 /* Products */,
 			);
@@ -130,6 +136,8 @@
 			files = (
 				11D48F7222831BA100759F06 /* LaunchScreen.storyboard in Resources */,
 				11D48F6F22831BA100759F06 /* Assets.xcassets in Resources */,
+				11D48F892283C23F00759F06 /* README.md in Resources */,
+				11D48F882283C23F00759F06 /* LICENSE in Resources */,
 				11D48F6D22831BA000759F06 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
