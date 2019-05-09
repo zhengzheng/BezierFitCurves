@@ -380,7 +380,7 @@ func computeRightTangent(_ d: [simd_float2], _ end: Int) -> simd_float2 {
 func computeCenterTangent(_ d: [simd_float2], _ center: Int) -> simd_float2 {
     let V1 = d[center - 1] - d[center]
     let V2 = d[center] - d[center + 1]
-    var tHatCenter = simd_float2(x: (V1.x + V2.x) / 2.0, y: (V1.y + V2.y) / 2.0)
+    var tHatCenter = (V1 + V2) / 2.0
     tHatCenter = simd_normalize(tHatCenter)
     return tHatCenter
 }

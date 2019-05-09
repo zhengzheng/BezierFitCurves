@@ -12,23 +12,43 @@ class ViewController: UIViewController {
     let curve = UIBezierPath()
     let shapeLayer = CAShapeLayer()
     var pointViewArray = [PointView]()
+    let slider = UISlider()
+    let errorLabel = UILabel(frame: CGRect.zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 5000
-        slider.value = 0.7
+        slider.value = 1000
         
-        slider.addTarget(self, action: #selector(sliderValueChanged(slider:)), for: .valueChanged)
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         view.addSubview(slider)
         slider.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20.0).isActive = true
         slider.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20.0).isActive = true
         slider.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40.0).isActive = true
         slider.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        
+        
+        let button = UIButton(type: .system)
+        button.setTitle("Generate", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(sliderValueChanged), for: .touchUpInside)
+        view.addSubview(button)
+        
+        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20.0).isActive = true
+        button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70.0).isActive = true
+        
+        errorLabel.text = String(slider.value)
+        errorLabel.font = UIFont.systemFont(ofSize: 14)
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(errorLabel)
+        
+        errorLabel.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
+        errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         
         var pointArray = [CGPoint]()
         let width: CGFloat = 10
@@ -40,7 +60,7 @@ class ViewController: UIViewController {
             let center = CGPoint(x: x, y: y)
             pointView.center = center
             pointView.dragCallBack = { [unowned self] (pointView: PointView) -> Void in
-                self.sliderValueChanged(slider: slider)
+                self.sliderValueChanged()
             }
             view.addSubview(pointView)
             pointViewArray.append(pointView)
@@ -54,9 +74,10 @@ class ViewController: UIViewController {
         view.layer.addSublayer(shapeLayer)
     }
 
-    @objc func sliderValueChanged(slider: UISlider) {
+    @objc func sliderValueChanged() {
+        errorLabel.text = String(self.slider.value)
         curve.removeAllPoints()
-        curve.error = slider.value
+        curve.error = self.slider.value
         
         var pointArray = [CGPoint]()
         
