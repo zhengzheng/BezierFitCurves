@@ -18,6 +18,7 @@ struct BezierCurve {
 }
 
 private var _error: Float = 1000
+private var _bezCurves = [BezierCurve]()
 
 extension UIBezierPath {
     var error: Float {
@@ -26,6 +27,11 @@ extension UIBezierPath {
         }
         set {
             _error = max(0, newValue)
+        }
+    }
+    var bezCurves: [BezierCurve] {
+        get {
+            return _bezCurves
         }
     }
     
@@ -49,6 +55,8 @@ extension UIBezierPath {
             simd_float2(Float(p.x), Float(p.y))
         }
         let bezCurves = FitCurve(d, _error)
+        _bezCurves = bezCurves
+        
         move(to: points[0])
         for bezCurve in bezCurves {
             let _ = CGPoint(x: CGFloat(bezCurve.pt1.x), y: CGFloat(bezCurve.pt1.y))

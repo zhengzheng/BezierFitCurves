@@ -16,9 +16,7 @@ class PointView: UIControl {
         layer.cornerRadius = 5
         layer.masksToBounds = true
         backgroundColor = UIColor.magenta
-//        self.addTarget(self, action: #selector(touchDragInside:withEvent:), forControlEvents: .tou)
         self.addTarget(self, action: #selector(dragInside(pointView:withEvent:)), for: .touchDragInside)
-
     }
     
     required init?(coder aDecoder: NSCoder) {

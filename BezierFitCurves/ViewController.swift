@@ -15,9 +15,10 @@ class ViewController: UIViewController {
     let slider = UISlider()
     let errorLabel = UILabel(frame: CGRect.zero)
     
+    let controlPointShapeLayer = CAShapeLayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
@@ -72,6 +73,9 @@ class ViewController: UIViewController {
         shapeLayer.lineWidth = 3
         shapeLayer.path = curve.cgPath
         view.layer.addSublayer(shapeLayer)
+        
+        controlPointShapeLayer.fillColor = UIColor.red.cgColor
+        view.layer.addSublayer(controlPointShapeLayer)
     }
 
     @objc func sliderValueChanged() {
@@ -86,6 +90,17 @@ class ViewController: UIViewController {
         }
         curve.addBezierFitCurve(pointArray)
         shapeLayer.path = curve.cgPath
+        
+        let controlPointPath = UIBezierPath()
+        for bezCurve in curve.bezCurves {
+            let c1 = CGPoint(x: CGFloat(bezCurve.c1.x), y: CGFloat(bezCurve.c1.y))
+            let c2 = CGPoint(x: CGFloat(bezCurve.c2.x), y: CGFloat(bezCurve.c2.y))
+            controlPointPath.move(to: c1)
+            controlPointPath.addArc(withCenter: c1, radius: 3, startAngle: 0, endAngle: .pi * 2, clockwise: true)
+            controlPointPath.move(to: c2)
+            controlPointPath.addArc(withCenter: c2, radius: 3, startAngle: 0, endAngle: .pi * 2, clockwise: true)
+        }
+        controlPointShapeLayer.path = controlPointPath.cgPath
     }
 }
 
